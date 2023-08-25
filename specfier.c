@@ -2,7 +2,7 @@
 
 /*
  * get_specfier - findes the format function
- *@s: the format string
+ * @s: the format string
  *
  * Return: the number of bytes print
  */
@@ -23,7 +23,7 @@ int (*get_specfier(char *s)(va_list ap, params_t *params)
 		{"S", print_address},
 		{"r", print_rev},
 		{"R", print_rot13},
-		{NULL,NULL}
+		{NULL, NULL}
 	};
 	int g = 0;
 	while (specifiers[g].specfier)
@@ -49,14 +49,14 @@ int get_print_func(char *s, va_list ap, params_t *params)
 {
 	int (*o)(va_list, params_t *) = get_specifier (s);
 
-	if (f)
-		return (f(ap, params));
+	if (o)
+		return (o(ap, params));
 	return (0);
 
 
 
 }
- 
+
 /*
  * get_flag - findes the flag function
  * @s: the format string
@@ -71,22 +71,23 @@ int get_flag(char *s, params_t *params)
 	switch (*s)
 	{
 		case '+':
-		     i = params->plus_flag = 1;
-		     break;
+			i = params->plus_flag = 1;
+			break;
 		case ' ':
-                     i = params->space_flag = 1;
-                     break;
+			i = params->space_flag = 1;
+			break;
 		case '#':
-                     i = params->hashtag_flag = 1;
-                     break;
+			i = params->hashtag_flag = 1;
+			break;
 		case '-':
-                     i = params->minus_flag = 1;
-                     break;
-		case '0'
-                     i = params->zero_flag = 1;
-                     break;
+			i = params->minus_flag = 1;
+			break;
+		case '0':
+			i = params->zero_flag = 1;
+			break;
 	}
 	return (i)
+}
 /*
  * get_modifier - findes the modifier function
  * @s: the format string
@@ -101,11 +102,11 @@ int get_modifier(char *s, prams_t *params)
 	switch (*s)
 	{
 	case 'h':
-	   a = params->plus_flag = 1;
-	    break;
-	case 'l'
-	    a = params->l_modifier = 1;
-	    break;
+		a = params->plus_flag = 1;
+		break;
+	case 'l':
+		a = params->l_modifier = 1;
+		break;
 	}
 	return (a)
 }
@@ -135,3 +136,4 @@ char *get_width(char *s, params_t *params, va_list ap)
 	params->width = d;
 	return (0);
 }
+
